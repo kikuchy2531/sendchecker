@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+  xsi:type="MailApp">
+
+  <!-- 一意の GUID に置き換えてください（PowerShell: [guid]::NewGuid()） -->
+  <Id>7d20a37c-6299-4097-8249-910a8cc728af</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Your Company</ProviderName>
+  <DefaultLocale>ja-JP</DefaultLocale>
+  <DisplayName DefaultValue="送信前 宛先チェック"/>
+  <Description DefaultValue="送信時に宛先一覧を表示し、社外アドレスが含まれる場合に警告します。"/>
+  <IconUrl DefaultValue="https://YOUR-HOST/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://YOUR-HOST/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://YOUR-HOST/support"/>
+
+  <AppDomains>
+    <AppDomain>https://YOUR-HOST</AppDomain>
+  </AppDomains>
+
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://YOUR-HOST/commands.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadWriteItem</Permissions>
+
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+
+      <!-- SendMode="PromptUser" は Mailbox 1.12 以上が必要。新しい Outlook は 1.14 対応済み -->
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.12">
+          <bt:Set Name="Mailbox"/>
+        </bt:Sets>
+      </Requirements>
+
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <Runtimes>
+            <Runtime resid="WebViewRuntime.Url">
+              <Override type="javascript" resid="JSRuntime.Url"/>
+            </Runtime>
+          </Runtimes>
+
+          <DesktopFormFactor>
+            <FunctionFile resid="WebViewRuntime.Url"/>
+            <ExtensionPoint xsi:type="LaunchEvent">
+              <LaunchEvents>
+                <!--
+                  SendMode:
+                    PromptUser = 警告を出し「このまま送信」を許可（本ツールの既定）
+                    SoftBlock  = 修正しないと送れないが管理者側で無効化可
+                    Block      = 完全にブロック
+                -->
+                <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" SendMode="PromptUser"/>
+              </LaunchEvents>
+              <SourceLocation resid="WebViewRuntime.Url"/>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16x16" DefaultValue="https://YOUR-HOST/assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://YOUR-HOST/assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://YOUR-HOST/assets/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://YOUR-HOST/commands.html"/>
+          <bt:Url id="JSRuntime.Url" DefaultValue="https://YOUR-HOST/launchevent.js"/>
+        </bt:Urls>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>
