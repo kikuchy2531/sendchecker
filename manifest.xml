@@ -12,12 +12,12 @@
   <DefaultLocale>ja-JP</DefaultLocale>
   <DisplayName DefaultValue="送信前 宛先チェック"/>
   <Description DefaultValue="送信時に宛先一覧を表示し、社外アドレスが含まれる場合に警告します。"/>
-  <IconUrl DefaultValue="https://YOUR-HOST/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://YOUR-HOST/assets/icon-128.png"/>
-  <SupportUrl DefaultValue="https://YOUR-HOST/support"/>
+  <IconUrl DefaultValue="https://kikuchy2531.github.io/sendchecker/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://kikuchy2531.github.io/sendchecker/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://kikuchy2531.github.io/sendchecker/support"/>
 
   <AppDomains>
-    <AppDomain>https://YOUR-HOST</AppDomain>
+    <AppDomain>https://kikuchy2531.github.io/sendchecker</AppDomain>
   </AppDomains>
 
   <Hosts>
@@ -33,7 +33,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://YOUR-HOST/commands.html"/>
+        <SourceLocation DefaultValue="https://kikuchy2531.github.io/sendchecker/commands.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -84,13 +84,13 @@
 
       <Resources>
         <bt:Images>
-          <bt:Image id="Icon.16x16" DefaultValue="https://YOUR-HOST/assets/icon-16.png"/>
-          <bt:Image id="Icon.32x32" DefaultValue="https://YOUR-HOST/assets/icon-32.png"/>
-          <bt:Image id="Icon.80x80" DefaultValue="https://YOUR-HOST/assets/icon-80.png"/>
+          <bt:Image id="Icon.16x16" DefaultValue="https://kikuchy2531.github.io/sendchecker/assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://kikuchy2531.github.io/sendchecker/assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://kikuchy2531.github.io/sendchecker/assets/icon-80.png"/>
         </bt:Images>
         <bt:Urls>
-          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://YOUR-HOST/commands.html"/>
-          <bt:Url id="JSRuntime.Url" DefaultValue="https://YOUR-HOST/launchevent.js"/>
+          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://kikuchy2531.github.io/sendchecker/commands.html"/>
+          <bt:Url id="JSRuntime.Url" DefaultValue="https://kikuchy2531.github.io/sendchecker/launchevent.js"/>
         </bt:Urls>
       </Resources>
     </VersionOverrides>
